@@ -1,0 +1,249 @@
+:root {
+  --bg: #ececec;
+  --reversal: #171010;
+  --orange: #ffa621;
+  --gray: #73888c;
+}
+
+html,
+body {
+  cursor: none;
+}
+
+.wrap-bg {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: -1;
+  background-color: var(--bg);
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.org {
+  color: var(--orange) !important;
+}
+
+.font-en {
+  font-family: "SaolDisplay-Regular";
+  font-style: italic;
+}
+.font-en .char {
+  font-style: italic;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  padding-top: 30px;
+}
+.header.top {
+  padding-top: 50px;
+}
+.header .inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.header .inner h1 {
+  font-size: 34px;
+}
+.header .inner h1 span {
+  font-weight: 300;
+}
+.header button {
+  position: relative;
+  width: 51px;
+  height: 51px;
+  border-radius: 50%;
+  border: 1px solid #f9f9f9;
+  margin-left: 50px;
+}
+.header button svg {
+  width: 51px;
+  height: 51px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.header button svg circle {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  stroke-linecap: butt;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+}
+.header button:hover {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.header button:hover svg circle {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 400;
+  stroke-width: 0.7;
+}
+.header button:hover div {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.header button div {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.header button div span {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #f9f9f9;
+}
+.header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+.header nav a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 20px;
+  padding: 0 10px;
+  font-size: 20px;
+}
+
+.footer {
+  position: relative;
+  color: var(--gray);
+}
+.footer .footer-info {
+  border-top: 1px solid var(--gray);
+  padding-top: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 70px;
+}
+.footer .footer-info div {
+  font-size: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.footer .footer-info div a {
+  display: block;
+  margin-left: 5px;
+  position: relative;
+  color: var(--gray);
+  border-bottom: 1px solid rgba(255, 255, 227, 0.2);
+}
+.footer .footer-info div a::after {
+  content: "";
+  width: 0;
+  height: 1px;
+  background-color: var(--gray);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.footer .footer-info div a:hover::after {
+  width: 100%;
+}
+.footer .footer-util svg path {
+  fill: var(--gray);
+}
+.footer .box-carousel {
+  height: 200px;
+}
+.footer .carousel-item {
+  position: relative;
+}
+.footer .carousel-item p {
+  white-space: nowrap;
+  color: #2c2f33;
+  font-size: 12em;
+  font-weight: 400;
+  line-height: 1;
+  text-shadow: -1px -1px 0 var(--orange), 1px -1px 0 var(--orange), -1px 1px 0 var(--orange), 1px 1px 0 var(--orange);
+  padding: 0 30px;
+}
+.footer .carousel-item p.colored {
+  -webkit-clip-path: circle(0% at 50% 50%);
+          clip-path: circle(0% at 50% 50%);
+  z-index: 1;
+  color: var(--orange);
+  position: absolute;
+  top: 0%;
+  bottom: auto;
+  left: 0%;
+  right: auto;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.footer .carousel-item:hover p.colored {
+  -webkit-clip-path: circle(75% at 50% 50%);
+          clip-path: circle(75% at 50% 50%);
+}
+
+.pointer {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 0.6vw;
+  height: 0.6vw;
+  border-radius: 50%;
+  z-index: 9999999;
+}
+
+.pointer:before {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  background: var(--orange);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

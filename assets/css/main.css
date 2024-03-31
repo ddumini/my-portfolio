@@ -1,0 +1,92 @@
+.main-intro {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+.main-intro .main-tit {
+  font-size: 8vw;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 70px;
+  line-height: 1;
+}
+
+.blur-it .word {
+  line-height: 1;
+}
+.blur-it .char {
+  -webkit-transition: opacity 0.2s linear, color 0.5s linear;
+  transition: opacity 0.2s linear, color 0.5s linear;
+  line-height: 1;
+}
+.blur-it .char::before, .blur-it .char::after {
+  visibility: visible;
+  opacity: 0;
+}
+.blur-it.active .char {
+  color: rgba(255, 255, 227, 0.7);
+}
+.blur-it.active .char::before, .blur-it.active .char::after {
+  opacity: 0.8;
+  -webkit-animation: blur 0.6s linear infinite alternate, blurOpacity 2.5s linear;
+          animation: blur 0.6s linear infinite alternate, blurOpacity 2.5s linear;
+  -webkit-animation-delay: calc(-0.2s * var(--distance-percent));
+          animation-delay: calc(-0.2s * var(--distance-percent));
+}
+.blur-it.active .char::after {
+  -webkit-animation-delay: calc(0.3s + -0.2s * var(--distance-percent));
+          animation-delay: calc(0.3s + -0.2s * var(--distance-percent));
+}
+
+@-webkit-keyframes blur {
+  0% {
+    -webkit-transform: translate(-0.1em, 0) scale(0.9) rotate(-2deg);
+            transform: translate(-0.1em, 0) scale(0.9) rotate(-2deg);
+  }
+  50% {
+    -webkit-transform: translate(0, 0) scale(1.1) rotate(0deg);
+            transform: translate(0, 0) scale(1.1) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(0.1em, 0) scale(0.9) rotate(2deg);
+            transform: translate(0.1em, 0) scale(0.9) rotate(2deg);
+  }
+}
+
+@keyframes blur {
+  0% {
+    -webkit-transform: translate(-0.1em, 0) scale(0.9) rotate(-2deg);
+            transform: translate(-0.1em, 0) scale(0.9) rotate(-2deg);
+  }
+  50% {
+    -webkit-transform: translate(0, 0) scale(1.1) rotate(0deg);
+            transform: translate(0, 0) scale(1.1) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(0.1em, 0) scale(0.9) rotate(2deg);
+            transform: translate(0.1em, 0) scale(0.9) rotate(2deg);
+  }
+}
+@-webkit-keyframes blurOpacity {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes blurOpacity {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.main-about {
+  height: 100vh;
+}

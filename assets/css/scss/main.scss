@@ -1,0 +1,66 @@
+.main-intro {
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  .main-tit {
+    font-size: 8vw;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 70px;
+    line-height: 1;
+    // i {
+    //   content: "";
+    //   width: 30px;
+    //   height: 30px;
+    //   display: inline-block;
+    //   background-color: rgba(255, 255, 227, 0.7);
+    //   border-radius: 50%;
+    // }
+  }
+}
+.blur-it {
+  .word {
+    line-height: 1;
+  }
+  .char {
+    transition: opacity 0.2s linear, color 0.5s linear;
+    line-height: 1;
+    &::before,
+    &::after {
+      visibility: visible;
+      opacity: 0;
+    }
+  }
+  &.active {
+    .char {
+      color: rgba(255, 255, 227, 0.7);
+      &::before,
+      &::after {
+        opacity: 0.8;
+        animation: blur 0.6s linear infinite alternate, blurOpacity 2.5s linear;
+        animation-delay: calc( -0.2s * var(--distance-percent) );
+      }
+
+      &::after {
+        animation-delay: calc( 0.3s + (-0.2s * var(--distance-percent)) );
+      }
+    }
+  }
+}
+@keyframes blur {
+  0% { transform: translate(-0.1em, 0) scale(0.9) rotate(-2deg); }
+  50% { transform: translate(0,0) scale(1.1) rotate(0deg); }
+  100% { transform: translate(0.1em, 0) scale(0.9) rotate(2deg); }
+}
+@keyframes blurOpacity {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.main-about {
+  height: 100vh;
+}
