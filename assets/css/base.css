@@ -57,14 +57,14 @@ label,
 legend { margin: 0; padding: 0; border: 0; vertical-align: baseline; background: transparent; }
 html { overflow-y: scroll; -webkit-text-size-adjust: 100%;}
 html,
-body { width: 100%; font-size: 14px; background-color: #ececec; margin: 0 auto; }
-body { font-size: 1em; font-family: 'Faktum Test', 'Pretendard', sans-serif; color: #171010; }
+body { width: 100%; font-size: 14px; background-color: #ececec; margin: 0 auto;letter-spacing: -0.025em; }
+body { font-size: 1em; font-family: 'Faktum Test', 'Pretendard', sans-serif; color: var(--reversal); }
 select,
 input,
 textarea,
-button { font-size: 1em; font-family: 'Faktum Test', 'Pretendard', sans-serif; vertical-align: middle; color: #171010; outline: none; background: transparent; border: none; padding: 0; margin: 0; border-radius: 0; }
+button { font-size: 1em; font-family: 'Faktum Test', 'Pretendard', sans-serif; vertical-align: middle; color: var(--reversal); outline: none; background: transparent; border: none; padding: 0; margin: 0; border-radius: 0; }
 button { cursor: none; }
-a { outline: none; color: #171010; text-decoration: none; cursor: none; }
+a { outline: none; color: var(--reversal); text-decoration: none; cursor: none; }
 select { padding-left: 5px; border: none; background: url(/image/common/intops_select.png) no-repeat right 10px center; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
 select::-ms-expand { display: none; }
 input[type='text'],

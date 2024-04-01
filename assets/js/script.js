@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
       x = e.clientX;
       y = e.clientY;
       let cursorTarget = event.target.tagName
-      console.log(cursorTarget)
       if (cursorTarget === 'A' || cursorTarget === 'BUTTON') {
         cursor.classList.add('is-pointer')
       } else {
@@ -67,37 +66,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function introAnim() {
-    // gsap
-    // .timeline({
-    //   scrollTrigger: {
-    //     trigger: '.main-intro',
-    //     // markers: true,
-    //     start: '0%, 100%',
-    //   }
-    // }).add(()=> {
-    //   document.querySelector('.blur-it').classList.remove('active');
-    // }, 2.5).fromTo('.header h2', {
-    //   x: -50,
-    //   opacity: 0,
-    //   duration: 0.3,
-    // }, {
-    //   x: 0,
-    //   opacity: 1,
-    // }, 3.3).fromTo('.header ul', {
-    //   x: -50,
-    //   opacity: 0,
-    //   duration: 0.3,
-    // }, {
-    //   x: 0,
-    //   opacity: 1,
-    // }, 3.6).fromTo('.header button', {
-    //   x: -50,
-    //   opacity: 0,
-    //   duration: 0.3,
-    // }, {
-    //   x: 0,
-    //   opacity: 1,
-    // }, 3.9);
     gsap
       .timeline({
         scrollTrigger: {
@@ -108,10 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .add(() => {
         document.querySelector('.blur-it').classList.remove('active');
-      }, 2.5)
-      .to('.main-tit i', {
-        backgroundColor: '#ff5a24',
-      });
+      }, 2.5);
   }
   function introTitFadeOut() {
     gsap.fromTo(

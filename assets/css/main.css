@@ -24,11 +24,13 @@
   line-height: 1;
 }
 .blur-it .char::before, .blur-it .char::after {
+  content: "";
   visibility: visible;
   opacity: 0;
 }
 .blur-it.active .char {
-  color: rgba(255, 255, 227, 0.7);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(23, 16, 16, 0.6);
 }
 .blur-it.active .char::before, .blur-it.active .char::after {
   opacity: 0.8;
