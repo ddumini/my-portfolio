@@ -3,10 +3,6 @@
   --reversal: #171010;
   --orange: #ffa621;
   --gray: #73888c;
-}
-
-html,
-body {
   cursor: none;
 }
 
@@ -149,7 +145,7 @@ body {
   height: 2vw;
   border-radius: 2em;
   top: 50%;
-  left: calc(var(--lastAnchorWidth) * var(--anchorIdx) + 3px * var(--anchorIdx));
+  left: var(--anchorLeft);
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   border: 1px solid transparent;

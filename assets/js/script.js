@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
       footerUp();
       carouselUp();
       Splitting();
+      cursorAnim();
     });
   // --------------------- header --------------------
   //  ---------------------- footer -------------------
@@ -26,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
   Splitting();
   introAnim();
   introTitFadeOut();
-  cursorAnim();
   //  --------------------- main ----------------------
   if (document.querySelector('main-page')) {
   }
@@ -40,59 +40,72 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const cursor = document.querySelector('.pointer');
 
+    document.addEventListener(
+      'mousemove',
+      (event) => {
+        let e = event.touches ? event.touches[0] : event;
+        x = e.clientX;
+        y = e.clientY;
+
+        expandCursor(event);
+      },
+      { passive: true }
+    );
+
     const mouseMove = () => {
       requestAnimationFrame(() => {
         currX = currX + (x - currX);
         currY = currY + (y - currY);
-        
+
         if (!cursor.classList.contains('is-nav')) {
           cursor.style.transform = `translate(${currX}px, ${currY}px)`;
-        }else {
+        } else {
           cursor.style.transform = `translate(${currX}px, 55px)`;
         }
+
         mouseMove();
       });
     };
 
-    document.addEventListener('mousemove', (event) => {
-      let e = event.touches ? event.touches[0] : event;
-      x = e.clientX;
-      y = e.clientY;
-      let cursorTarget = event.target;
-      if (cursorTarget) {
-        while (cursorTarget !== null) {
-          if (cursorTarget.tagName === 'A' || cursorTarget.tagName === 'BUTTON') {
-            cursor.classList.add('is-pointer');
-            return;
-          } else if (cursorTarget.tagName === 'NAV') {
-            cursor.classList.add('is-nav');
-            let anchorElements = cursorTarget.querySelectorAll('a');
-            // Loop through each <a> element to add hover event listener
-            anchorElements.forEach((element, idx) => {
-              element.addEventListener('mouseover', () => {
-                let anchorWidth = parseInt(element.offsetWidth);
-                let lastAnchorWidth;
-                if (idx < 1) {
-                  lastAnchorWidth = 0;
-                }else {
-                  lastAnchorWidth  = parseInt(anchorElements[idx - 1].offsetWidth);
-                }
-                document.documentElement.style.setProperty('--anchorWidth', `${anchorWidth}px`);
-                document.documentElement.style.setProperty('--lastAnchorWidth', `${lastAnchorWidth}px`);
-                document.documentElement.style.setProperty('--anchorIdx', idx);
-                console.log(lastAnchorWidth * idx)
-              });
-            });
-            return;
-          }
-          cursorTarget = cursorTarget.parentNode;
-        }
-      }
-      cursor.classList.remove('is-pointer');
-      cursor.classList.remove('is-nav');
-    });
-
     mouseMove();
+
+    const expandCursor = (event) => {
+      const cursorTarget = event.target;
+
+      if (cursorTarget.dataset.expand === '') {
+        cursor.classList.add('is-pointer');
+      } else {
+        cursor.classList.remove('is-pointer');
+      }
+    };
+
+    const nav = document.querySelector('.header nav');
+    const navChilren = nav.querySelectorAll('a');
+    navChilren.forEach((ele, idx) => {
+      ele.addEventListener(
+        'mousemove',
+        () => {
+          const anchorWidth = parseInt(ele.offsetWidth);
+          let anchorLeft;
+
+          if (idx === 0) {
+            anchorLeft = 0;
+          } else {
+            anchorLeft = [...navChilren]
+              .splice(0, idx) // -1
+              .reduce((prev, current) => {
+                const currentWidth = current.offsetWidth;
+                return prev + currentWidth;
+              }, 0);
+          }
+
+          document.documentElement.style.setProperty('--anchorWidth', `${anchorWidth}px`);
+          document.documentElement.style.setProperty('--anchorLeft', `${anchorLeft}px`);
+          document.documentElement.style.setProperty('--anchorIdx', idx);
+        },
+        { passive: true }
+      );
+    });
   }
 
   function introAnim() {

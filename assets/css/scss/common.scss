@@ -3,11 +3,10 @@
   --reversal: #171010;
   --orange: #ffa621;
   --gray: #73888c;
+
+  cursor:none;
 }
-html,
-body {
-  cursor: none;
-}
+
 .wrap-bg {
   height: 100vh;
   width: 100%;
@@ -125,7 +124,7 @@ body {
       height: 2vw;
       border-radius: 2em;
       top: 50%;
-      left: calc((var(--lastAnchorWidth) * var(--anchorIdx)) + (3px * var(--anchorIdx)));
+      left: var(--anchorLeft);
       transform: translateY(-50%);
       border: 1px solid transparent;
       transition: all .3s ease;
