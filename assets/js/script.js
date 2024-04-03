@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       footerUp();
       carouselUp();
+      Splitting();
     });
   // --------------------- header --------------------
   //  ---------------------- footer -------------------
@@ -43,9 +44,12 @@ document.addEventListener('DOMContentLoaded', function () {
       requestAnimationFrame(() => {
         currX = currX + (x - currX);
         currY = currY + (y - currY);
-
-        cursor.style.transform = `translate(${currX}px, ${currY}px)`;
-
+        
+        if (!cursor.classList.contains('is-nav')) {
+          cursor.style.transform = `translate(${currX}px, ${currY}px)`;
+        }else {
+          cursor.style.transform = `translate(${currX}px, 55px)`;
+        }
         mouseMove();
       });
     };
@@ -54,12 +58,38 @@ document.addEventListener('DOMContentLoaded', function () {
       let e = event.touches ? event.touches[0] : event;
       x = e.clientX;
       y = e.clientY;
-      let cursorTarget = event.target.tagName
-      if (cursorTarget === 'A' || cursorTarget === 'BUTTON') {
-        cursor.classList.add('is-pointer')
-      } else {
-        cursor.classList.remove('is-pointer')
+      let cursorTarget = event.target;
+      if (cursorTarget) {
+        while (cursorTarget !== null) {
+          if (cursorTarget.tagName === 'A' || cursorTarget.tagName === 'BUTTON') {
+            cursor.classList.add('is-pointer');
+            return;
+          } else if (cursorTarget.tagName === 'NAV') {
+            cursor.classList.add('is-nav');
+            let anchorElements = cursorTarget.querySelectorAll('a');
+            // Loop through each <a> element to add hover event listener
+            anchorElements.forEach((element, idx) => {
+              element.addEventListener('mouseover', () => {
+                let anchorWidth = parseInt(element.offsetWidth);
+                let lastAnchorWidth;
+                if (idx < 1) {
+                  lastAnchorWidth = 0;
+                }else {
+                  lastAnchorWidth  = parseInt(anchorElements[idx - 1].offsetWidth);
+                }
+                document.documentElement.style.setProperty('--anchorWidth', `${anchorWidth}px`);
+                document.documentElement.style.setProperty('--lastAnchorWidth', `${lastAnchorWidth}px`);
+                document.documentElement.style.setProperty('--anchorIdx', idx);
+                console.log(lastAnchorWidth * idx)
+              });
+            });
+            return;
+          }
+          cursorTarget = cursorTarget.parentNode;
+        }
       }
+      cursor.classList.remove('is-pointer');
+      cursor.classList.remove('is-nav');
     });
 
     mouseMove();
