@@ -6,6 +6,10 @@
   cursor: none;
 }
 
+.letter-s01 {
+  letter-spacing: -0.05em;
+}
+
 .wrap-bg {
   height: 100vh;
   width: 100%;
@@ -108,8 +112,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s 0.3s ease;
+  transition: all 0.3s 0.3s ease;
 }
 .header button div span {
   display: block;
@@ -137,6 +141,7 @@
   display: flex;
   padding: 0 20px;
   font-size: 20px;
+  cursor: pointer;
 }
 .header nav .border {
   position: absolute;
@@ -149,8 +154,8 @@
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   border: 1px solid transparent;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s 0.2s ease;
+  transition: all 0.3s 0.2s ease;
   opacity: 0;
 }
 .header nav:hover .border {
@@ -264,22 +269,52 @@
           transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  background: #0059DE;
-  border: 1px solid transparent;
+  background: #0059de;
 }
 
-.pointer.is-pointer {
+.pointer.is-pointer,
+.pointer.is-nav {
   width: 2vw;
   height: 2vw;
 }
 
-.pointer.is-nav {
-  pointer-events: pointer !important;
+.pointer.is-nav::before {
+  -webkit-animation: navCursor 1s ease both;
+          animation: navCursor 1s ease both;
 }
 
+@-webkit-keyframes navCursor {
+  10% {
+    background-color: transparent;
+    border: 1px solid var(--reversal);
+  }
+  40% {
+    width: 4vw;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes navCursor {
+  10% {
+    background-color: transparent;
+    border: 1px solid var(--reversal);
+  }
+  40% {
+    width: 4vw;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
 .splitting.split-anim .char {
   overflow: hidden;
   color: transparent;
+}
+
+.splitting.split-anim .char:last-child {
+  padding-left: 6px;
 }
 
 .splitting.split-anim .word {
@@ -292,7 +327,8 @@
   font-weight: 500;
 }
 
-.splitting.split-anim .char::before, .splitting.split-anim .char::after {
+.splitting.split-anim .char::before,
+.splitting.split-anim .char::after {
   visibility: visible;
   color: var(--reversal);
   -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.9, 0, 0.2, 1);

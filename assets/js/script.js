@@ -71,11 +71,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const expandCursor = (event) => {
       const cursorTarget = event.target;
-
-      if (cursorTarget.dataset.expand === '') {
+      console.log(cursorTarget.parentNode.tagName)
+      if (cursorTarget.parentNode.tagName === 'A' || cursorTarget.parentNode.tagName === 'BUTTON') {
         cursor.classList.add('is-pointer');
+      } else if (cursorTarget.closest('[data-nav]')){
+        cursor.classList.add('is-nav');
       } else {
         cursor.classList.remove('is-pointer');
+        cursor.classList.remove('is-nav');
       }
     };
 
