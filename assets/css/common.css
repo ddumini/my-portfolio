@@ -7,14 +7,13 @@
 }
 
 .letter-s01 {
-  letter-spacing: -0.05em;
+  letter-spacing: -0.025em;
 }
 
 .wrap-bg {
   height: 100vh;
   width: 100%;
   position: fixed;
-  z-index: -1;
   background-color: var(--bg);
   top: 0;
   left: 0;
@@ -26,13 +25,24 @@
 }
 
 .font-en {
-  font-family: "SaolDisplay-Regular";
+  font-family: "Cormorant";
   font-style: italic;
 }
 .font-en .char {
   font-style: italic;
 }
 
+@-webkit-keyframes headerDown {
+  from {
+    top: -100%;
+  }
+}
+
+@keyframes headerDown {
+  from {
+    top: -100%;
+  }
+}
 .header {
   position: fixed;
   top: 0;
@@ -42,6 +52,8 @@
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   padding-top: 30px;
+  -webkit-animation: headerDown 0.8s 3s ease both;
+          animation: headerDown 0.8s 3s ease both;
 }
 .header.top {
   padding-top: 50px;
@@ -322,7 +334,7 @@
 }
 
 .splitting.split-anim .char::after {
-  font-family: "SaolDisplay-Regular";
+  font-family: "Cormorant";
   font-style: italic;
   font-weight: 500;
 }

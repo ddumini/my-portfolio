@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   //  --------------------- common --------------------
   Splitting();
-  introAnim();
-  introTitFadeOut();
+  // introAnim();
   //  --------------------- main ----------------------
-  if (document.querySelector('main-page')) {
+  if (document.querySelector('.main-page')) {;
+    mainLines();
   }
 
   // ------------------------- functions -----------------------
@@ -71,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const expandCursor = (event) => {
       const cursorTarget = event.target;
-      console.log(cursorTarget.parentNode.tagName)
       if (cursorTarget.parentNode.tagName === 'A' || cursorTarget.parentNode.tagName === 'BUTTON') {
         cursor.classList.add('is-pointer');
       } else if (cursorTarget.closest('[data-nav]')){
@@ -111,38 +110,69 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function introAnim() {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: '.main-intro',
-          // markers: true,
-          start: '0%, 100%',
-        },
-      })
-      .add(() => {
-        document.querySelector('.blur-it').classList.remove('active');
-      }, 2.5);
-  }
-  function introTitFadeOut() {
-    gsap.fromTo(
-      '.main-tit',
+  // function introAnim() {
+  //   gsap
+  //     .timeline({
+  //       scrollTrigger: {
+  //         trigger: '.main-intro',
+  //         // markers: true,
+  //         start: '0%, 100%',
+  //       },
+  //     })
+  //     .add(() => {
+  //       document.querySelector('.blur-it').classList.remove('active');
+  //     }, 2.5);
+  // }
+  function mainLines() {
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '.main-intro',
+        pin: true,
+        scrub: 1,
+        start: '0, 0',
+        end: '+=200%',
+        markers: true,
+      }
+    })
+    .to('.desc-bg', {
+      'mask-size' : '198%',
+      duration: 1,
+    }, '>')
+    .to('.main-intro__desc', {
+      'mask-size' : '200%',
+      duration: 1,
+    }, '>-1')
+    .fromTo(
+      '.lines span',
       {
-        opacity: 1,
+        scale: 0,
       },
       {
-        scrollTrigger: {
-          trigger: '.main-tit',
-          start: '0%, 50%',
-          end: '+=100%',
-          // markers: true,
-          scrub: 1,
-        },
-        opacity: 0,
-      }
-    );
+        scale: 2,
+        duration: 2,
+        stagger: .7,
+        ease: Linear.easeNone,
+      }, '>-1'
+    )
+    // .to(
+    //   '.desc-list li',
+    //   {
+    //     autoAlpha: 1,
+    //     duration: 2,
+    //   }, '>-2'
+    // )
+    .to(
+      '.desc-list',
+      {
+        duration: 2,
+        rotateY: '180deg',
+      }, '>-2'
+    )
+    .to('.lines span', {
+      delay: 5,
+      autoAlpha: 0,
+    })
   }
-
   function carouselUp() {
     gsap.fromTo(
       '.box-carousel',
