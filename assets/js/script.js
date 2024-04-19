@@ -130,18 +130,76 @@ document.addEventListener('DOMContentLoaded', function () {
         pin: true,
         scrub: 1,
         start: '0, 0',
-        end: '+=200%',
+        end: '+=400%',
         markers: true,
       }
     })
-    .to('.desc-bg', {
-      'mask-size' : '198%',
-      duration: 1,
-    }, '>')
+    // .to('.desc-bg', {
+    //   'mask-size' : '198%',
+    //   duration: 1,
+    // }, '>')
     .to('.main-intro__desc', {
       'mask-size' : '200%',
-      duration: 1,
+      duration: 2,
     }, '>-1')
+    .to(
+      '.desc-list li.desc-list__01',
+      {
+        autoAlpha: 1,
+        scale: 1,
+        rotateY: '360deg',
+        duration: 1,
+      }, '>-1'
+    )
+    .to(
+      '.desc-list li.desc-list__01',
+      {
+        autoAlpha: 0,
+        delay: 0.5,
+        duration: 0.5,
+      }
+    )
+    .to(
+      '.desc-list li.desc-list__02',
+      {
+        autoAlpha: 1,
+        scale: 1,
+        rotateY: '360deg',
+        duration: 1,
+      }
+    )
+    .to(
+      '.desc-list li.desc-list__02',
+      {
+        autoAlpha: 0,
+        delay: 0.5,
+        duration: 0.5,
+      }
+    )
+    .to(
+      '.desc-list li.desc-list__03',
+      {
+        autoAlpha: 1,
+        scale: 1,
+        rotateY: '360deg',
+        duration: 1,
+      }
+    )
+    .to(
+      '.desc-list li.desc-list__03',
+      {
+        autoAlpha: 0,
+        delay: 0.5,
+        duration: 0.5,
+      }
+    )
+    // .to(
+    //   '.desc-list',
+    //   {
+    //     duration: 2,
+    //     rotateY: '180deg',
+    //   }, '>-2'
+    // )
     .fromTo(
       '.lines span',
       {
@@ -149,24 +207,10 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       {
         scale: 2,
-        duration: 2,
-        stagger: .7,
+        duration: 6,
+        stagger: 2,
         ease: Linear.easeNone,
-      }, '>-1'
-    )
-    // .to(
-    //   '.desc-list li',
-    //   {
-    //     autoAlpha: 1,
-    //     duration: 2,
-    //   }, '>-2'
-    // )
-    .to(
-      '.desc-list',
-      {
-        duration: 2,
-        rotateY: '180deg',
-      }, '>-2'
+      }, '>-6'
     )
     .to('.lines span', {
       delay: 5,
