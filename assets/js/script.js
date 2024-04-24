@@ -19,10 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
       carouselUp();
       Splitting();
       cursorAnim();
+      initialiseLenisScroll();
     });
-  // --------------------- header --------------------
-  //  ---------------------- footer -------------------
-
   //  --------------------- common --------------------
   Splitting();
   // introAnim();
@@ -109,7 +107,20 @@ document.addEventListener('DOMContentLoaded', function () {
       );
     });
   }
+  function initialiseLenisScroll() {
+    const lenis = new Lenis({
+      smoothWheel: true,
+      duration: 1.2,
+    });
 
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add(time => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+  }
   // function introAnim() {
   //   gsap
   //     .timeline({
